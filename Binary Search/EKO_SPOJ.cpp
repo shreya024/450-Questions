@@ -19,25 +19,26 @@ using namespace std;
 
 bool isPossible(vector<int> &v, int N, int M, int mid)
 {
-    long long int sum = 0;
-    for (long long int i = 0; i < N; i++)
+    int sum = 0;
+    for (int i = 0; i < N; i++)
     {
-        if (mid > v[i])
+        if (mid < v[i])
         {
             sum += v[i] - mid;
         }
         if (sum >= M)
             return true;
     }
+
     return false;
 }
 
-int Cutting(vector<int> &v, int N, int M)
+int cutting(vector<int> &v, int N, int M)
 {
-    long long int s = 0;
-    long long int e = v[N - 1];
-    long long int mid = s + (e - s) / 2;
-    long long int ans = -1;
+    int s = 0;
+    int e = v[N - 1];
+    int mid = s + (e - s) / 2;
+    int ans = -1;
     while (s <= e)
     {
         if (isPossible(v, N, M, mid))
@@ -54,15 +55,19 @@ int Cutting(vector<int> &v, int N, int M)
 
 int main()
 {
-    long long int N, M;
+    int M;
+    int N;
     cin >> N >> M;
     vector<int> v;
-    for (long long int i = 0; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
-        cin >> v[i];
+        int a;
+        cin >> a;
+        v.push_back(a);
     }
     sort(v.begin(), v.end());
-    long long int result = Cutting(v, N, M);
+
+    int result = cutting(v, N, M);
     cout << result;
     return 0;
 }
