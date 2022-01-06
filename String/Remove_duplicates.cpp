@@ -20,8 +20,39 @@ Output: "ay"
 #include <bits/stdc++.h>
 using namespace std;
 
+bool isDuplicate(string s)
+{
+    for (int i = 1; i < s.length(); i++)
+    {
+        if (s[i] == s[i - 1])
+        {
+            return true;
+        }
+    }
+    return false;
+}
+string removeDuplicates(string s)
+{
+    for (int i = 1; i < s.length(); i++)
+    {
+        if (s[i] == s[i - 1])
+        {
+            s.erase(s.begin() + i - 1, s.begin() + i + 1);
+        }
+    }
+    return s;
+}
+
 int main()
 {
-
+    string s;
+    cin >> s;
+    bool remove = isDuplicate(s);
+    while (remove)
+    {
+        s = removeDuplicates(s);
+        remove = isDuplicate(s);
+    }
+    cout << s;
     return 0;
 }
